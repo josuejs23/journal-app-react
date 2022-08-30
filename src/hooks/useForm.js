@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 
 export const useForm = ( initialForm = {}, formValidations={} ) => {
-  
+      
     const [ formState, setFormState ] = useState( initialForm );
     const [formValidation, setFormValidation] = useState({});
 
@@ -9,6 +9,9 @@ export const useForm = ( initialForm = {}, formValidations={} ) => {
       createValidators();
     }, [formState])
     
+    useEffect(() => {
+      setFormState(initialForm)
+    }, [initialForm])
 
     const onInputChange = ({ target }) => {
         const { name, value } = target;
@@ -41,6 +44,8 @@ export const useForm = ( initialForm = {}, formValidations={} ) => {
 
         setFormValidation(formCheckedValues); 
         console.log('CheckedValue=>',formCheckedValues)
+        console.log('formValue=>',formState)
+
     }
 
     return {

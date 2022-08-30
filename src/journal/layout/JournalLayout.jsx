@@ -7,14 +7,13 @@ const drawerWidth = 240;
 
 export const JournalLayout = ({children}) => {
 
-  const { displayName } = useSelector(state => state.auth);
   return (
       <Box sx={{display:'flex'}} className="animate__animated animate__fadeIn animate__faster">
 
         {/* Navbar */}
         <NavBar drawerWidth={drawerWidth}/>
         {/* Sidebar */}
-        <SideBar drawerWidth={drawerWidth} title={displayName}/>
+        <SideBar drawerWidth={drawerWidth}/>
         <Box
             component='main'
             drawerWidth={drawerWidth}

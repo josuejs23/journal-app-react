@@ -7,17 +7,17 @@ import { useForm } from '../../hooks'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkingAuthentication, startGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth/thunks'
 
+const formData = {
+  email:'',
+  password: ''
+}
 export const LoginPage = () => {
 
   const { status, errorMessage } = useSelector( state => state.auth)
 
   const dispatch = useDispatch()
 
-  const {  name, email, password, onInputChange, onResetForm,} = useForm({
-    name : '',
-    email : '',
-    password : ''
-  })
+  const {  name, email, password, onInputChange, onResetForm,} = useForm(formData)
 
   const handleSubmit = (event)=>{
     event.preventDefault();

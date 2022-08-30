@@ -1,8 +1,13 @@
 import { TurnedInNot } from "@mui/icons-material"
 import { Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material"
 import { Box } from "@mui/system"
+import { useSelector } from "react-redux"
+import { SideBarItem } from "./"
 
 export const SideBar = ({drawerWidth=240, title}) => {
+
+    const { notes } = useSelector(state => state.journal);
+    const { displayName } = useSelector(state => state.auth);
   return (
       <Box
         component='nav'
@@ -18,25 +23,16 @@ export const SideBar = ({drawerWidth=240, title}) => {
           >
               <Toolbar>
                 <Typography variant="h6" noWrap component="div"> 
-                    {title} 
+                    {displayName } 
                 </Typography>
               </Toolbar>
               <Divider/>
               <List>
                   {
-                      ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'].map( item => 
+                    //   ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'].map( item => 
+                      notes.map( ( note ) => 
                           (
-                            <ListItem key={item} disablePadding variant="">
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <TurnedInNot/> 
-                                    </ListItemIcon>
-                                    <Grid container>
-                                        <ListItemText primary={item}/>
-                                        <ListItemText secondary='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium voluptate provident magnam soluta ea sint et!'/> 
-                                    </Grid>
-                                </ListItemButton>
-                            </ListItem>
+                            <SideBarItem key={note.id} note={note}/>
                           )
                       )
                   }
